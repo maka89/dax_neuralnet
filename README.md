@@ -27,14 +27,18 @@ layers.append({"W":np.random.randn(4,1), "b":np.random.randn(1,1),"activation":"
 
 ```
 Let's create a NNDAX object and generate code:
+```python
 
-	nnd=NNDAX(input_features,layers)
-	
-	#Generate dax code
-	print(nnd.generate_dax())
+nnd=NNDAX(input_features,layers)
 
+#Generate dax code
+print(nnd.generate_dax())
+
+```
 Additionally, you can run a sample (or several) through the network to confirm that you get similar outputs in python and Power BI:
-
- 	print( "TEST")
-	print( "input=[1,2,3]:")
-	print( "output=" + str(nnd.calculate(np.array([[1,2,3]]))))
+```python
+x_test=np.array([[1,2,3]])
+print( "TEST")
+print( "input=[1,2,3]:")
+print( "output=" + str(nnd.calculate(x_test)))
+```
