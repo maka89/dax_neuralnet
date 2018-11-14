@@ -16,6 +16,8 @@ Each layers outputs are calculated as a_(i) = act_fn ( dot( a_(i-1) , W) + b)
 
 Let's define the names of the input measures in DAX, and define a neural network with 4 hidden relu units:
 ```python
+import numpy as np
+from nn_dax import NNDAX
 
 #Name of your input measures in power bi
 input_features=["[x1]","[x2]","[x3]"]
