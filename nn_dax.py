@@ -16,11 +16,11 @@ class NNDAX:
 			return "var l"+ substr+" = "+ "TANH( " + string_in + " )"
 		elif activation=="sigmoid":
 			tmp = "var z" + substr+ " = " + string_in + "\n"
-			return tmp+"var l"+substr+" = DIVIDE( 1.0; 1.0+EXP(- z"  + substr + " ) )\n"
+			return tmp+"var l"+substr+" = DIVIDE( 1,0; 1,0+EXP(- z"  + substr + " ) )\n"
 		elif activation=="relu":
 
 			tmp= "var z" + substr+ " = " + string_in + "\n"
-			return tmp + "var l" + substr + " = IF(z"+substr+" > 0.0; z"+substr+"; 0.0)\n"
+			return tmp + "var l" + substr + " = IF(z"+substr+" > 0,0; z"+substr+"; 0,0)\n"
 		else:
 			return "var l"+substr+" = " +string_in
 		
@@ -45,7 +45,7 @@ class NNDAX:
 			
 				tmp=""
 				for k in range(0,layers[i]["W"].shape[0]-1):
-					tmp+="{0:04e} * ".format(np.abs(layers[i]["W"][k,j])) + "l_"+str(l-1)+"_"+str(k)
+					tmp+="{0:04e} * ".format(np.abs(layers[i]["W"][k,j])).replace(".",",") + "l_"+str(l-1)+"_"+str(k)
 					if layers[i]["W"][k+1,j] < 0.0:
 						tmp+= " - "
 					else:
@@ -53,12 +53,12 @@ class NNDAX:
 				
 						
 				k=layers[i]["W"].shape[0]-1
-				tmp+="{0:04e} * ".format(np.abs(layers[i]["W"][k,j])) + "l_"+str(l-1)+"_"+str(k)		
+				tmp+="{0:04e} * ".format(np.abs(layers[i]["W"][k,j])).replace(".",",") + "l_"+str(l-1)+"_"+str(k)		
 				
 				if layers[i]["b"][0,j] < 0:
-					tmp += " - {0:04e}".format(np.abs(layers[i]["b"][0,j]))
+					tmp += " - {0:04e}".format(np.abs(layers[i]["b"][0,j])).replace(".",",")
 				else:
-					tmp += " + {0:04e}".format(np.abs(layers[i]["b"][0,j]))
+					tmp += " + {0:04e}".format(np.abs(layers[i]["b"][0,j])).replace(".",",")
 				
 				
 				str1+= self.assign_activation(tmp,layers[i]["activation"],l,j) + "\n"
