@@ -15,7 +15,7 @@ Each layers outputs are calculated as a_(i) = act_fn ( dot( a_(i-1) , W) + b)
 ## Example
 
 Let's define the names of the input measures in DAX, and define a neural network with 4 hidden relu units:
-
+'''python
         #Name of your input measures in power bi
 	input_features=["[x1]","[x2]","[x3]"]
 
@@ -23,7 +23,7 @@ Let's define the names of the input measures in DAX, and define a neural network
 	layers=[]
 	layers.append({"W":np.random.randn(len(input_features),n_hidden), "b":np.random.randn(1,4),"activation":"relu"})
 	layers.append({"W":np.random.randn(4,1), "b":np.random.randn(1,1),"activation":""})
-
+'''
 Let's create a NNDAX object and generate code:
 
 	nnd=NNDAX(input_features,layers)
