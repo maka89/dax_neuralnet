@@ -14,8 +14,8 @@ if __name__=="__main__":
 	#List of dicts
 	n_hidden=4
 	layers=[]
-	layers.append({"W":np.random.randn(len(input_features),n_hidden), "b":np.random.randn(1,n_hidden),"activation":"relu"})
-	layers.append({"W":np.random.randn(n_hidden,1), "b":np.random.randn(1,1),"activation":""})
+	layers.append({"W":np.random.randn(len(input_features),n_hidden), "b":np.random.randn(1,n_hidden),"activation":"tanh"})
+	layers.append({"W":np.random.randn(n_hidden,1), "b":np.random.randn(1,1),"activation":"sigmoid"})
 	
 	#Create NNDAX object
 	nnd=NNDAX(input_features,layers)

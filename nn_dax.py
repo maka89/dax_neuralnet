@@ -44,8 +44,12 @@ class NNDAX:
 			for j in range(0,layers[i]["W"].shape[1]):
 			
 				tmp=""
+				
 				for k in range(0,layers[i]["W"].shape[0]-1):
-					tmp+="{0:04e} * ".format(np.abs(layers[i]["W"][k,j])).replace(".",",") + "l_"+str(l-1)+"_"+str(k)
+					if k==0:
+						tmp+="{0:04e} * ".format(layers[i]["W"][k,j]).replace(".",",") + "l_"+str(l-1)+"_"+str(k)
+					else:
+						tmp+="{0:04e} * ".format(np.abs(layers[i]["W"][k,j])).replace(".",",") + "l_"+str(l-1)+"_"+str(k)
 					if layers[i]["W"][k+1,j] < 0.0:
 						tmp+= " - "
 					else:
@@ -64,6 +68,7 @@ class NNDAX:
 				str1+= self.assign_activation(tmp,layers[i]["activation"],l,j) + "\n"
 			if i != len(layers)-1:
 				str1+="\n\n"
+				
 		str1+= "\nreturn l_"+str(len(layers))+"_0"
 		return str1
 		
