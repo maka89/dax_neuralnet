@@ -20,7 +20,7 @@ Let's define the names of the input measures in DAX, and define a neural network
 #Name of your input measures in power bi
 input_features=["[x1]","[x2]","[x3]"]
 
-
+#Change this with your own NN
 layers=[]
 layers.append({"W":np.random.randn(len(input_features),n_hidden), "b":np.random.randn(1,4),"activation":"relu"})
 layers.append({"W":np.random.randn(4,1), "b":np.random.randn(1,1),"activation":""})
