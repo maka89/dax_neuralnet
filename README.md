@@ -9,4 +9,4 @@ Each layer is a dict with members:
 	- "b": biases. Numpy 2d array (First dim always 1)
 	- "activation": string representing activation function. Default is linear. "relu","tanh" or "sigmoid"
 
-Each layer calculated as l_(i) = act_fn ( dot( l_(i-1) , W) + b)
+Each layer calculated as a_(i) = act_fn ( dot( a_(i-1) , W) + b)
